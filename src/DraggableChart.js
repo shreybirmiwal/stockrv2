@@ -67,7 +67,7 @@ const DraggableChart = () => {
     plotOptions: {
       series: {
         dragDrop: {
-          draggableX: true,
+          draggableX: false,
           draggableY: true,
         },
       },
