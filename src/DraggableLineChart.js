@@ -10,7 +10,7 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = () => {
+const DraggableLineChart = () => {
 
   const [data, setData] = useState([
     [0, 2],
@@ -78,4 +78,4 @@ const DraggableChart = () => {
   );
 };
 
-export default DraggableChart;
+export default DraggableLineChart;

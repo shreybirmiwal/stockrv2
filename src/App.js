@@ -1,5 +1,6 @@
 import './App.css';
 import StockChart from './StockChart';
+import DraggableLineChart from './DraggableLineChart';
 
 function App() {
   return (
