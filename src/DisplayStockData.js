@@ -7,18 +7,30 @@ const DisplayStockData = () => {
   const [data, setData] = useState(DummyData[0]);
 
   const options = {
+    chart: {
+      zoomType: "none",
+    },
     title: {
-      text: "Stock Chart",
+      text: "",
     },
     rangeSelector: {
-      selected: 1,
+      enabled: false,
+    },
+    navigator: {
+      enabled: false,
+    },
+    scrollbar: {
+      enabled: false,
+    },
+    credits: {
+      enabled: false,
     },
     yAxis: [
       {
         title: {
           text: "OHLC",
         },
-        height: "60%",
+        height: "100%",
         lineWidth: 2,
       },
       {
@@ -32,7 +44,7 @@ const DisplayStockData = () => {
       },
     ],
     tooltip: {
-      split: true,
+      enabled: false,
     },
     series: [
       {
@@ -60,7 +72,6 @@ const DisplayStockData = () => {
           ],
         },
       },
-      
     ],
   };
 

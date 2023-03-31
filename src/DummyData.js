@@ -24,9 +24,9 @@ const DummyData = [
       { open: 126.20, low: 123.50, close: 124.80, high: 127.90, day: 10 },
     ],
     [
-        { open: 15.53, low: 14.94, close: 15.12, high: 16.02, day: 1 },
-        { open: 15.27, low: 15.03, close: 15.58, high: 15.89, day: 2 },
-        { open: 16.35, low: 15.52, close: 16.18, high: 16.75, day: 3 },
+        { open: 15.53, low: 14.94, close: 15.12, high: 16.02, day: 1 , volume: 2},
+        { open: 15.27, low: 15.03, close: 15.58, high: 15.89, day: 2, volume : 4 },
+        { open: 16.35, low: 15.52, close: 16.18, high: 16.75, day: 3 , volume: 7},
         { open: 16.12, low: 15.99, close: 16.23, high: 16.48, day: 4 },
         { open: 15.93, low: 15.45, close: 16.05, high: 16.31, day: 5 },
         { open: 16.41, low: 15.78, close: 16.28, high: 16.72, day: 6 },
