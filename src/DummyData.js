@@ -23,6 +23,30 @@ const DummyData = [
       { open: 128.30, low: 125.40, close: 126.50, high: 129.60, day: 9 },
       { open: 126.20, low: 123.50, close: 124.80, high: 127.90, day: 10 },
     ],
+    [
+        { open: 15.53, low: 14.94, close: 15.12, high: 16.02, day: 1 },
+        { open: 15.27, low: 15.03, close: 15.58, high: 15.89, day: 2 },
+        { open: 16.35, low: 15.52, close: 16.18, high: 16.75, day: 3 },
+        { open: 16.12, low: 15.99, close: 16.23, high: 16.48, day: 4 },
+        { open: 15.93, low: 15.45, close: 16.05, high: 16.31, day: 5 },
+        { open: 16.41, low: 15.78, close: 16.28, high: 16.72, day: 6 },
+        { open: 16.14, low: 15.84, close: 16.37, high: 16.57, day: 7 },
+        { open: 16.28, low: 16.07, close: 16.33, high: 16.49, day: 8 },
+        { open: 16.35, low: 16.21, close: 16.57, high: 16.72, day: 9 },
+        { open: 16.64, low: 16.23, close: 16.39, high: 16.99, day: 10 },
+      ],
+      [
+        { open: 12.56, low: 12.02, close: 12.25, high: 12.81, day: 1 },
+        { open: 12.33, low: 12.15, close: 12.6, high: 12.91, day: 2 },
+        { open: 12.71, low: 12.03, close: 12.35, high: 12.82, day: 3 },
+        { open: 12.42, low: 12.12, close: 12.57, high: 12.74, day: 4 },
+        { open: 12.65, low: 12.36, close: 12.51, high: 12.89, day: 5 },
+        { open: 12.84, low: 12.5, close: 12.77, high: 12.96, day: 6 },
+        { open: 12.91, low: 12.61, close: 12.98, high: 13.07, day: 7 },
+        { open: 12.99, low: 12.73, close: 12.8, high: 13.12, day: 8 },
+        { open: 12.81, low: 12.55, close: 12.99, high: 13.15, day: 9 },
+        { open: 12.92, low: 12.66, close: 12.85, high: 13.1, day: 10 },
+      ],
   ];
 
 

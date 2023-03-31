@@ -1,11 +1,11 @@
 import './App.css';
+import DisplayStockData from './DisplayStockData';
 import StockChart from './StockChart';
-import DraggableLineChart from './DraggableLineChart';
 
 function App() {
   return (
     <div className="App">
-      <StockChart/>
+      <DisplayStockData/>
     </div>
   );
 }

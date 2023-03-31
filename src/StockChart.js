@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import Draggable from 'highcharts-draggable-points';
 import DraggableChart from './DraggableChart';
 
 const StockChart = () => {
@@ -18,25 +17,12 @@ const StockChart = () => {
     [Date.parse('2022-01-10'), 145],
   ]);
   const chartRef = useRef(null);
-  const draggableChartRef = useRef(null);
 
-  useEffect(() => {
-    if (chartRef.current && draggableChartRef.current) {
-      const lastValue = data[data.length - 1][1];
-      const draggableChart = draggableChartRef.current.getChart();
-      draggableChart.series[0].setData([[1, lastValue]]);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (chartRef.current) {
-      Draggable(Highcharts);
-    }
-  }, [chartRef]);
 
   const options = {
     chart: {
-      backgroundColor: '#f6f6f6'
+      backgroundColor: '#f6f6f6',
+      
     },
     xAxis: {
       type: 'datetime',
@@ -73,7 +59,7 @@ const StockChart = () => {
         <HighchartsReact highcharts={Highcharts} options={options} ref={chartRef} />
       </div>
       <div style={{ width: '50%', height: '100%', backgroundColor: '#f6f6f6', position: 'relative' }}>
-        <DraggableChart startingValue={2} ref={draggableChartRef} />
+        <DraggableChart/>
       </div>
       <button onClick={handleRefresh}>Refresh</button>
     </div>
