@@ -25,22 +25,37 @@ const DisplayStockData = () => {
     credits: {
       enabled: false,
     },
+    xAxis: [{
+        labels: {
+            enabled: false,
+          },
+          tickWidth: 0,
+        }
+    ],
     yAxis: [
       {
         title: {
-          text: "OHLC",
+          text: "",
         },
         height: "100%",
         lineWidth: 2,
+        labels: {
+            enabled: false,
+          },
+          tickWidth: 0,
       },
       {
         title: {
-          text: "Volume",
+          text: "",
         },
-        top: "65%",
-        height: "35%",
+        top: "80%",
+        height: "20%",
         offset: 0,
         lineWidth: 2,
+        labels: {
+            enabled: false,
+          },
+          tickWidth: 0,
       },
     ],
     tooltip: {
@@ -71,6 +86,7 @@ const DisplayStockData = () => {
             ["month", [1, 2, 3, 4, 6]],
           ],
         },
+        
       },
     ],
   };
