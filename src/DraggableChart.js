@@ -27,8 +27,11 @@ const DraggableChart = () => {
   ]);
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
     <HighchartsReact
+
+      containerProps={{ style: { height: "90%" } }}
+
       highcharts={Highcharts}
       constructorType={"chart"}
       options = {{

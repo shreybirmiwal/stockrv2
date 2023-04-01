@@ -97,8 +97,15 @@ const DisplayStockData = () => {
   };
 
   return (
-    <div>
-      <HighchartsReact highcharts={Highcharts} constructorType={"stockChart"} options={options} />
+    <div style={{ height: "100vh" }}>
+      <HighchartsReact
+            containerProps={{ style: { height: "90%" } }}
+            highcharts={Highcharts} 
+            constructorType={"stockChart"} 
+            options={options} 
+    
+       />
+
       <button onClick={handleRefresh}>Refresh</button>
     </div>
   );

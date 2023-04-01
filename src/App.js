@@ -1,11 +1,16 @@
 import './App.css';
 import DisplayStockData from './DisplayStockData';
-import StockChart from './StockChart';
+import DraggableChart from './DraggableChart';
 
 function App() {
   return (
-    <div className="App">
-      <DisplayStockData/>
+    <div style={{ display: 'flex' }}>
+      <div style={{ width: '50%', height: '100%' }}>
+        <DisplayStockData/>
+      </div>
+      <div style={{ width: '50%', height: '100%', position: 'relative' }}>
+        <DraggableChart/>
+      </div>
     </div>
   );
 }
