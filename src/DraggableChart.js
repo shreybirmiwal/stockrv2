@@ -73,6 +73,7 @@ const DraggableChart = ({data, setData}) => {
       visible: false,
       min: data[0].absMin,
       max: data[0].absMax,
+      
     },
     series: [
       {
@@ -95,6 +96,19 @@ const DraggableChart = ({data, setData}) => {
         dragDrop: {
           draggableX: false,
           draggableY: true,
+          dragMinY: data[0].absMin, // minimum y-value allowed for dragged points
+          dragMaxY: data[0].absMax, // maximum y-value allowed for dragged points
+          dragPrecisionY: 1, // number of decimal places for y-values
+        },
+        point: {
+          events: {
+            drag: function (e) {
+              console.log("New y-value:", e.target.y);
+            },
+            drop: function (e) {
+              console.log("Final y-value:", e.target.y);
+            },
+          },
         },
       },
     },
