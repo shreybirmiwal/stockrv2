@@ -3,8 +3,7 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import DummyData from "./DummyData.js";
 
-const DisplayStockData = () => {
-  const [data, setData] = useState(DummyData[0]);
+const DisplayStockData = ({data, setData}) => {
 
   const options = {
     chart: {
@@ -43,6 +42,8 @@ const DisplayStockData = () => {
             enabled: false,
           },
           tickWidth: 0,
+          min: data[0].absMin-50,
+          max: data[0].absMax+50,
       },
       {
         title: {

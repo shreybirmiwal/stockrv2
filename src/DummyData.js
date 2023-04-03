@@ -1,55 +1,13 @@
 const DummyData = [
     [
-      { open: 150.50, low: 145.20, close: 147.90, high: 152.80, day: 1 },
-      { open: 148.00, low: 142.10, close: 145.70, high: 149.90, day: 2 },
-      { open: 147.80, low: 144.30, close: 146.90, high: 151.20, day: 3 },
-      { open: 148.90, low: 145.50, close: 147.50, high: 150.70, day: 4 },
-      { open: 147.30, low: 143.50, close: 144.80, high: 148.60, day: 5 },
-      { open: 146.40, low: 143.70, close: 146.30, high: 149.40, day: 6 },
-      { open: 147.00, low: 143.90, close: 145.60, high: 148.80, day: 7 },
-      { open: 145.80, low: 141.20, close: 142.50, high: 146.40, day: 8 },
-      { open: 142.60, low: 138.70, close: 140.30, high: 143.80, day: 9 },
-      { open: 139.90, low: 136.50, close: 137.70, high: 141.80, day: 10 },
-    ],
-    [
-      { open: 137.80, low: 133.70, close: 136.60, high: 139.50, day: 1 },
-      { open: 136.50, low: 132.90, close: 135.40, high: 138.20, day: 2 },
-      { open: 136.70, low: 133.20, close: 134.90, high: 138.80, day: 3 },
-      { open: 135.60, low: 132.70, close: 134.40, high: 137.90, day: 4 },
-      { open: 134.50, low: 131.10, close: 133.20, high: 136.90, day: 5 },
-      { open: 133.10, low: 130.80, close: 131.70, high: 134.70, day: 6 },
-      { open: 131.80, low: 128.90, close: 130.20, high: 133.50, day: 7 },
-      { open: 129.90, low: 126.50, close: 128.40, high: 130.80, day: 8 },
-      { open: 128.30, low: 125.40, close: 126.50, high: 129.60, day: 9 },
-      { open: 126.20, low: 123.50, close: 124.80, high: 127.90, day: 10 },
-    ],
-    [
-        { open: 15.53, low: 14.94, close: 15.12, high: 16.02, day: 0 , volume: 2},
-        { open: 15.27, low: 15.03, close: 15.58, high: 15.89, day: 1, volume : 4 },
-        { open: 16.35, low: 15.52, close: 16.18, high: 16.75, day: 2 , volume: 7},
-        { open: 16.12, low: 15.99, close: 16.23, high: 16.48, day: 3 , volume: 8},
-        { open: 15.93, low: 15.45, close: 16.05, high: 16.31, day: 4,volume: 7 },
-        { open: 16.41, low: 15.78, close: 16.28, high: 16.72, day: 5,volume: 5 },
-        { open: 16.14, low: 15.84, close: 16.37, high: 16.57, day: 6,volume: 7 },
-        { open: 16.28, low: 16.07, close: 16.33, high: 16.49, day: 7,volume: 9 },
-        { open: 16.35, low: 16.21, close: 16.57, high: 16.72, day: 8, volume:3 },
-        { open: 16.64, low: 16.23, close: 16.39, high: 16.99, day: 9, volume: 5 },
-        { open: 16.64, low: 16.23, close: 16.39, high: 16.99, day: 10, volume: 6 },
-
-      ],
-      [
-        { open: 12.56, low: 12.02, close: 12.25, high: 12.81, day: 1 },
-        { open: 12.33, low: 12.15, close: 12.6, high: 12.91, day: 2 },
-        { open: 12.71, low: 12.03, close: 12.35, high: 12.82, day: 3 },
-        { open: 12.42, low: 12.12, close: 12.57, high: 12.74, day: 4 },
-        { open: 12.65, low: 12.36, close: 12.51, high: 12.89, day: 5 },
-        { open: 12.84, low: 12.5, close: 12.77, high: 12.96, day: 6 },
-        { open: 12.91, low: 12.61, close: 12.98, high: 13.07, day: 7 },
-        { open: 12.99, low: 12.73, close: 12.8, high: 13.12, day: 8 },
-        { open: 12.81, low: 12.55, close: 12.99, high: 13.15, day: 9 },
-        { open: 12.92, low: 12.66, close: 12.85, high: 13.1, day: 10 },
-      ],
-  ];
+    { open: 448.0, low: 444.09, close: 446.97, high: 450.64, day: 0, volume: 69230300, next: [445.92, 446.85, 449.26, 450.23, 452.5, 455.31, 452.5, 447.57, 449.12, 451.33], absMin: 440.03, absMax: 462.03 },
+    { open: 448.38, low: 446.17, close: 447.81, high: 450.07, day: 1, volume: 63555200, next: [445.92, 446.85, 449.26, 450.23, 452.5, 455.31, 452.5, 447.57, 449.12, 451.33], absMin: 440.03, absMax: 462.03 },
+    { open: 448.64, low: 442.5, close: 443.57, high: 449.06, day: 2, volume: 81345600, next: [445.92, 446.85, 449.26, 450.23, 452.5, 455.31, 452.5, 447.57, 449.12, 451.33], absMin: 440.03, absMax: 462.03 },
+    { open: 443.34, low: 439.05, close: 440.23, high: 444.07, day: 3, volume: 90359700, next: [445.92, 446.85, 449.26, 450.23, 452.5, 455.31, 452.5, 447.57, 449.12, 451.33], absMin: 440.03, absMax: 462.03 },
+    { open: 438.91, low: 430.7, close: 434.5, high: 439.18, day: 4, volume: 107554800, next: [445.92, 446.85, 449.26, 450.23, 452.5, 455.31, 452.5, 447.57, 449.12, 451.33], absMin: 430.7, absMax: 462.03 },
+    { open: 435.56, low: 431.05, close: 434.46, high: 437.6, day: 5, volume: 79799900, next: [445.92, 446.85, 449.26, 450.23, 452.5, 455.31, 452.5, 447.57, 449.12, 451.33], absMin: 430.7, absMax: 462.03 },
+    ]
+]  
 
 
   export default DummyData;

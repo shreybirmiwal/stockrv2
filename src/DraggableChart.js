@@ -10,21 +10,42 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = () => {
+const DraggableChart = ({data, setData}) => {
 
-  const [data, setData] = useState([
-    [0, 2],
-    [1, 3],
-    [2, 4],
-    [3, 5],
-    [4, 6],
-    [5, 7],
-    [6, 8],
-    [7, 9],
-    [8, 1],
-    [9, 2],
-    [10, 3],
+  const [dataDrag, setDataDrag] = useState([
+    [0, data[0].open],
+    [1, data[0].open],
+    [2, data[0].open],
+    [3, data[0].open],
+    [4, data[0].open],
+    [5, data[0].open],
+    [6, data[0].open],
+    [7, data[0].open],
+    [8, data[0].open],
+    [9, data[0].open],
+    [10, data[0].open],
   ]);
+
+  useEffect(() => {
+    setDataDrag(
+      [
+        [0, data[0].open],
+        [1, data[0].open],
+        [2, data[0].open],
+        [3, data[0].open],
+        [4, data[0].open],
+        [5, data[0].open],
+        [6, data[0].open],
+        [7, data[0].open],
+        [8, data[0].open],
+        [9, data[0].open],
+        [10, data[0].open],
+      ]
+    )
+
+  }, data); 
+
+
 
   return (
     <div style={{ height: "100vh" }}>
@@ -50,11 +71,13 @@ const DraggableChart = () => {
         text: null,
       },
       visible: false,
+      min: data[0].absMin,
+      max: data[0].absMax,
     },
     series: [
       {
         name: '',
-        data: data,
+        data: dataDrag,
         lineWidth: 2,
       },
     ],
