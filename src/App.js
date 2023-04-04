@@ -18,7 +18,6 @@ function App() {
     data[0].next[0],
     data[0].next[0],
     data[0].next[0],
-    data[0].next[0]
   ])
 
   return (
