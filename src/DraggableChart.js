@@ -92,6 +92,24 @@ const DraggableChart = ({data, setData}) => {
         name: '',
         data: dataDrag,
         lineWidth: 2,
+        dragDrop: {
+          draggableX: false,
+          draggableY: true,
+          dragMinY: data[0].absMin-10, // minimum y-value allowed for dragged points
+          dragMaxY: data[0].absMax+10, // maximum y-value allowed for dragged points
+          dragPrecisionY: 1, // number of decimal places for y-values
+        },
+        point: {
+          events: {
+            drag: function (e) {
+            },
+            drop: function (e) {
+              var temp = userResponce
+              temp[e.target.x] = e.target.y;
+              setUserResponce(temp);
+            },
+          },
+        },
       },
       {
         name: 'Solution',
@@ -110,24 +128,8 @@ const DraggableChart = ({data, setData}) => {
     },
     plotOptions: {
       series: {
-        dragDrop: {
-          draggableX: false,
-          draggableY: true,
-          dragMinY: data[0].absMin, // minimum y-value allowed for dragged points
-          dragMaxY: data[0].absMax, // maximum y-value allowed for dragged points
-          dragPrecisionY: 1, // number of decimal places for y-values
-        },
-        point: {
-          events: {
-            drag: function (e) {
-            },
-            drop: function (e) {
-              var temp = userResponce
-              temp[e.target.x] = e.target.y;
-              setUserResponce(temp);
-            },
-          },
-        },
+
+
       },
     },
   }}
