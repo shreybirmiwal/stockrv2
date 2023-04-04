@@ -12,34 +12,46 @@ if (typeof Highcharts === "object") {
 
 const DraggableChart = ({data, setData}) => {
 
+  const handleSubmit = () => {
+    console.log(userResponce);
+    console.log(data[0].next);
+
+
+    
+  }
+
+  const [userResponce, setUserResponce] = useState([
+    data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close
+  ])
+
   const [dataDrag, setDataDrag] = useState([
-    [0, data[0].open],
-    [1, data[0].open],
-    [2, data[0].open],
-    [3, data[0].open],
-    [4, data[0].open],
-    [5, data[0].open],
-    [6, data[0].open],
-    [7, data[0].open],
-    [8, data[0].open],
-    [9, data[0].open],
-    [10, data[0].open],
+    [0, data[5].close],
+    [1, data[5].close],
+    [2, data[5].close],
+    [3, data[5].close],
+    [4, data[5].close],
+    [5, data[5].close],
+    [6, data[5].close],
+    [7, data[5].close],
+    [8, data[5].close],
+    [9, data[5].close],
+    [10, data[5].close],
   ]);
 
   useEffect(() => {
     setDataDrag(
       [
-        [0, data[0].open],
-        [1, data[0].open],
-        [2, data[0].open],
-        [3, data[0].open],
-        [4, data[0].open],
-        [5, data[0].open],
-        [6, data[0].open],
-        [7, data[0].open],
-        [8, data[0].open],
-        [9, data[0].open],
-        [10, data[0].open],
+        [0, data[5].close],
+        [1, data[5].close],
+        [2, data[5].close],
+        [3, data[5].close],
+        [4, data[5].close],
+        [5, data[5].close],
+        [6, data[5].close],
+        [7, data[5].close],
+        [8, data[5].close],
+        [9, data[5].close],
+        [10, data[5].close],
       ]
     )
 
@@ -71,14 +83,19 @@ const DraggableChart = ({data, setData}) => {
         text: null,
       },
       visible: false,
-      min: data[0].absMin,
-      max: data[0].absMax,
+      min: data[0].absMin-10,
+      max: data[0].absMax+10,
       
     },
     series: [
       {
         name: '',
         data: dataDrag,
+        lineWidth: 2,
+      },
+      {
+        name: 'Solution',
+        data: data[0].next,
         lineWidth: 2,
       },
     ],
@@ -103,10 +120,11 @@ const DraggableChart = ({data, setData}) => {
         point: {
           events: {
             drag: function (e) {
-              console.log("New y-value:", e.target.y);
             },
             drop: function (e) {
-              console.log("Final y-value:", e.target.y);
+              var temp = userResponce
+              temp[e.target.x] = e.target.y;
+              setUserResponce(temp);
             },
           },
         },
@@ -114,6 +132,8 @@ const DraggableChart = ({data, setData}) => {
     },
   }}
     />
+
+    <button onClick={handleSubmit}>submit</button>
   </div>
   );
 };

@@ -39,11 +39,11 @@ const DisplayStockData = ({data, setData}) => {
         height: "100%",
         lineWidth: 2,
         labels: {
-            enabled: false,
+            enabled: true,
           },
           tickWidth: 0,
-          min: data[0].absMin-50,
-          max: data[0].absMax+50,
+          min: data[0].absMin-10,
+          max: data[0].absMax+10,
       },
       {
         title: {
