@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Highcharts from "highcharts";
 import more from "highcharts/highcharts-more";
 import draggable from "highcharts/modules/draggable-points";
+import Popup from 'reactjs-popup';
 
 import HighchartsReact from "highcharts-react-official";
 
@@ -12,7 +13,9 @@ if (typeof Highcharts === "object") {
 
 const DraggableChart = ({data, setData}) => {
   const chartRef = useRef(null);
-  
+  const [PopOpen, setPopOpen] = useState(false);
+  const [accuracyPop, SetAccuracyPop] = useState(0);
+
   const [userResponce, setUserResponce] = useState([
     data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close
   ])
@@ -20,27 +23,37 @@ const DraggableChart = ({data, setData}) => {
   const handleSubmit = () => {
     console.log(userResponce);
     console.log(data[0].next);
+
     const chart = chartRef.current.chart;
     chart.series[1].setVisible(true);
 
     var accuracy = determineAcuracy();
-    console.log(accuracy +"%");
-
+    console.log(accuracy)
+    //SetAccuracyPop(accuracy)
+    //setPopOpen(true)
   }
 
   const determineAcuracy = () => {
     //should be data[0].next
     //is userResponce
-    const numItems = data[0].next.length;
+
+
+    const numItems = userResponce.length;
     let totalDifference = 0;
     
     for (let i = 0; i < numItems; i++) {
-      const difference = Math.abs(data[0].next[i] - userResponce[i]);
-      totalDifference += difference;
+      const difference = Math.abs(data[0].next[i] - userResponce[i]) * 1;
+      totalDifference += (difference.toFixed(2)*1);
+      //console.log("total " +totalDifference)
     }
     
     const averageDifference = totalDifference / numItems;
     const weightedDiff = 100 - ((averageDifference*100) / (data[0].absMax-data[0].absMin));
+
+    if(weightedDiff !== weightedDiff){
+      //if its nAn
+      return 0;
+    }
 
     return weightedDiff;
 
@@ -83,6 +96,11 @@ const DraggableChart = ({data, setData}) => {
 
   return (
     <div style={{ height: "100vh" }}>
+
+      <Popup open={PopOpen} onClose={() => setPopOpen(false)}>
+        <div>You scored {accuracyPop}%</div>
+      </Popup>
+
     <HighchartsReact
 
       containerProps={{ style: { height: "90%" } }}
