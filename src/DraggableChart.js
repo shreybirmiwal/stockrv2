@@ -24,7 +24,7 @@ const DraggableChart = ({data, setData}) => {
     chart.series[1].setVisible(true);
 
     var accuracy = determineAcuracy();
-    console.log(accuracy);
+    console.log(accuracy +"%");
 
   }
 
@@ -40,8 +40,9 @@ const DraggableChart = ({data, setData}) => {
     }
     
     const averageDifference = totalDifference / numItems;
-    
-    return averageDifference;
+    const weightedDiff = 100 - ((averageDifference*100) / (data[0].absMax-data[0].absMin));
+
+    return weightedDiff;
 
   }
 
