@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Highcharts from "highcharts";
 import more from "highcharts/highcharts-more";
 import draggable from "highcharts/modules/draggable-points";
@@ -11,12 +11,13 @@ if (typeof Highcharts === "object") {
 }
 
 const DraggableChart = ({data, setData}) => {
-
+  const chartRef = useRef(null);
+  
   const handleSubmit = () => {
     console.log(userResponce);
     console.log(data[0].next);
-
-
+    const chart = chartRef.current.chart;
+    chart.series[1].setVisible(true);
     
   }
 
@@ -56,8 +57,7 @@ const DraggableChart = ({data, setData}) => {
     )
 
   }, data); 
-
-
+  
 
   return (
     <div style={{ height: "100vh" }}>
@@ -66,6 +66,7 @@ const DraggableChart = ({data, setData}) => {
       containerProps={{ style: { height: "90%" } }}
 
       highcharts={Highcharts}
+      ref={chartRef}
       constructorType={"chart"}
       options = {{
     chart: {
@@ -115,6 +116,7 @@ const DraggableChart = ({data, setData}) => {
         name: 'Solution',
         data: data[0].next,
         lineWidth: 2,
+        visible : false,
       },
     ],
     title: {
@@ -134,7 +136,6 @@ const DraggableChart = ({data, setData}) => {
     },
   }}
     />
-
     <button onClick={handleSubmit}>submit</button>
   </div>
   );

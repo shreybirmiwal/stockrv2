@@ -39,7 +39,7 @@ const DisplayStockData = ({data, setData}) => {
         height: "100%",
         lineWidth: 2,
         labels: {
-            enabled: true,
+            enabled: false,
           },
           tickWidth: 0,
           min: data[0].absMin-10,
