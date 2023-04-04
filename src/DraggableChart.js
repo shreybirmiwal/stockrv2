@@ -13,17 +13,38 @@ if (typeof Highcharts === "object") {
 const DraggableChart = ({data, setData}) => {
   const chartRef = useRef(null);
   
+  const [userResponce, setUserResponce] = useState([
+    data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close
+  ])
+  
   const handleSubmit = () => {
     console.log(userResponce);
     console.log(data[0].next);
     const chart = chartRef.current.chart;
     chart.series[1].setVisible(true);
-    
+
+    var accuracy = determineAcuracy();
+    console.log(accuracy);
+
   }
 
-  const [userResponce, setUserResponce] = useState([
-    data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close
-  ])
+  const determineAcuracy = () => {
+    //should be data[0].next
+    //is userResponce
+    const numItems = data[0].next.length;
+    let totalDifference = 0;
+    
+    for (let i = 0; i < numItems; i++) {
+      const difference = Math.abs(data[0].next[i] - userResponce[i]);
+      totalDifference += difference;
+    }
+    
+    const averageDifference = totalDifference / numItems;
+    
+    return averageDifference;
+
+  }
+
 
   const [dataDrag, setDataDrag] = useState([
     [0, data[5].close],
