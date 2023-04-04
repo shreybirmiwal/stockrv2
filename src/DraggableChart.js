@@ -3,7 +3,6 @@ import Highcharts from "highcharts";
 import more from "highcharts/highcharts-more";
 import draggable from "highcharts/modules/draggable-points";
 import Popup from 'reactjs-popup';
-
 import HighchartsReact from "highcharts-react-official";
 
 if (typeof Highcharts === "object") {
@@ -11,14 +10,10 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, setData}) => {
+const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
-
-  const [userResponce, setUserResponce] = useState([
-    data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close,data[5].close
-  ])
   
   const handleSubmit = () => {
     console.log(userResponce);
@@ -27,10 +22,33 @@ const DraggableChart = ({data, setData}) => {
     const chart = chartRef.current.chart;
     chart.series[1].setVisible(true);
 
-    var accuracy = determineAcuracy();
-    console.log(accuracy)
-    //SetAccuracyPop(accuracy)
-    //setPopOpen(true)
+    setTimeout(() => {
+
+      var accuracy = determineAcuracy();
+      console.log(accuracy)
+      SetAccuracyPop(accuracy.toFixed(2))
+      setPopOpen(true)
+
+      resetVals()
+      
+    }, 2500); // Delay of 1 second
+
+  }
+
+  const resetVals = () => {
+    setUserResponce([
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+    ])
+    
   }
 
   const determineAcuracy = () => {
@@ -48,9 +66,11 @@ const DraggableChart = ({data, setData}) => {
     }
     
     const averageDifference = totalDifference / numItems;
-    const weightedDiff = 100 - ((averageDifference*100) / (data[0].absMax-data[0].absMin));
+    var weightedDiff = 100 - ((averageDifference*110) / (data[0].absMax-data[0].absMin));
+    if(weightedDiff < 0) weightedDiff = 0;
 
     if(weightedDiff !== weightedDiff){
+      console.log("BROKEN!")
       //if its nAn
       return 0;
     }
@@ -61,33 +81,32 @@ const DraggableChart = ({data, setData}) => {
 
 
   const [dataDrag, setDataDrag] = useState([
-    [0, data[5].close],
-    [1, data[5].close],
-    [2, data[5].close],
-    [3, data[5].close],
-    [4, data[5].close],
-    [5, data[5].close],
-    [6, data[5].close],
-    [7, data[5].close],
-    [8, data[5].close],
-    [9, data[5].close],
-    [10, data[5].close],
+    [0, data[0].next[0]],
+    [1, data[0].next[0]],
+    [2, data[0].next[0]],
+    [3, data[0].next[0]],
+    [4, data[0].next[0]],
+    [5, data[0].next[0]],
+    [6, data[0].next[0]],
+    [7, data[0].next[0]],
+    [8, data[0].next[0]],
+    [9, data[0].next[0]],
+
   ]);
 
   useEffect(() => {
     setDataDrag(
       [
-        [0, data[5].close],
-        [1, data[5].close],
-        [2, data[5].close],
-        [3, data[5].close],
-        [4, data[5].close],
-        [5, data[5].close],
-        [6, data[5].close],
-        [7, data[5].close],
-        [8, data[5].close],
-        [9, data[5].close],
-        [10, data[5].close],
+        [0, data[0].next[0]],
+        [1, data[0].next[0]],
+        [2, data[0].next[0]],
+        [3, data[0].next[0]],
+        [4, data[0].next[0]],
+        [5, data[0].next[0]],
+        [6, data[0].next[0]],
+        [7, data[0].next[0]],
+        [8, data[0].next[0]],
+        [9, data[0].next[0]],
       ]
     )
 
@@ -98,7 +117,11 @@ const DraggableChart = ({data, setData}) => {
     <div style={{ height: "100vh" }}>
 
       <Popup open={PopOpen} onClose={() => setPopOpen(false)}>
-        <div>You scored {accuracyPop}%</div>
+        <div className='bg-blue-200 w-96 h-60 rounded-md '>
+          <p className='font-bold flex-row flex justify-center align-middle pt-10'>
+            You scored {accuracyPop}%
+          </p>
+        </div>
       </Popup>
 
     <HighchartsReact

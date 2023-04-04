@@ -3,7 +3,7 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import DummyData from "./DummyData.js";
 
-const DisplayStockData = ({data, setData}) => {
+const DisplayStockData = ({data, setData , setUserResponce}) => {
 
   const options = {
     chart: {
@@ -95,6 +95,18 @@ const DisplayStockData = ({data, setData}) => {
   const handleRefresh = () => {
     const randomIndex = Math.floor(Math.random() * DummyData.length);
     setData(DummyData[randomIndex]);
+    setUserResponce([
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+      ])
   };
 
   return (
