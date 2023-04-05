@@ -10,7 +10,7 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
+const DraggableChart = ({data, setData, userResponce, setUserResponce, displayedDrag, SetdisplayedDrag}) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
@@ -36,6 +36,8 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
   }
 
   const resetVals = () => {
+    console.log(data[0].next[0]);
+    
     setUserResponce([
       data[0].next[0],
       data[0].next[0],
@@ -48,8 +50,25 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
       data[0].next[0],
       data[0].next[0],
     ])
-    
+
+    SetdisplayedDrag([
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+      data[0].next[0],
+    ])
+
   }
+
+  useEffect(() => {
+    resetVals()
+  }, [data]);
 
   const determineAcuracy = () => {
     //should be data[0].next
@@ -78,39 +97,6 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
     return weightedDiff;
 
   }
-
-  const [dataDrag, setDataDrag] = useState([  ]);
-
-  useEffect(() => {
-    setDataDrag(
-      [
-        [0, data[0].next[0]],
-        [1, data[0].next[0]],
-        [2, data[0].next[0]],
-        [3, data[0].next[0]],
-        [4, data[0].next[0]],
-        [5, data[0].next[0]],
-        [6, data[0].next[0]],
-        [7, data[0].next[0]],
-        [8, data[0].next[0]],
-        [9, data[0].next[0]],
-      ]
-    )
-
-    setUserResponce([
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-    ])
-
-  }, data); 
   
 
   return (
@@ -154,7 +140,7 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
     series: [
       {
         name: '',
-        data: dataDrag,
+        data: displayedDrag,
         lineWidth: 2,
         dragDrop: {
           draggableX: false,
@@ -169,8 +155,11 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce}) => {
             },
             drop: function (e) {
               var temp = userResponce
-              temp[e.target.x] = e.target.y;
+              temp[e.target.x] = (e.target.y);
+              //console.log(e.target.y)
+              //console.log("TEMP " + temp)
               setUserResponce(temp);
+              //SetdisplayedDrag(temp);
             },
           },
         },
