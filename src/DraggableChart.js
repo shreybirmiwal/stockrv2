@@ -4,17 +4,18 @@ import more from "highcharts/highcharts-more";
 import draggable from "highcharts/modules/draggable-points";
 import Popup from 'reactjs-popup';
 import HighchartsReact from "highcharts-react-official";
+import DummyData from './DummyData';
 
 if (typeof Highcharts === "object") {
   more(Highcharts);
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, userResponce}) => {
+const DraggableChart = ({data, userResponce, setData}) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
-  
+
   const handleSubmit = () => {
     console.log(userResponce);
     console.log(data[0].next);
@@ -54,12 +55,38 @@ const DraggableChart = ({data, userResponce}) => {
       ]
     }
 
+    console.log("WE ARE RESETING DATA! " + userResponce.current)
+
   }
 
   useEffect(() => {
     resetVals()
-    //console.log(userResponce)
+    console.log("data updated! " + userResponce.current)
+
   }, [data]);
+
+  const handleNewPuzzle = () => {
+    resetVals()
+    const randomIndex = Math.floor(Math.random() * DummyData.length);
+    setData(DummyData[randomIndex]);
+    userResponce = {
+      current : 
+      [
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+      ]
+    }
+    setPopOpen(false); // Close the popup
+
+  }
 
   const determineAcuracy = () => {
     //should be data[0].next
@@ -93,11 +120,14 @@ const DraggableChart = ({data, userResponce}) => {
   return (
     <div style={{ height: "100vh" }}>
 
-      <Popup open={PopOpen} onClose={() => setPopOpen(false)}>
-        <div className='bg-blue-200 w-96 h-60 rounded-md '>
+      <Popup open={PopOpen} onClose={() => setPopOpen(false)} closeOnDocumentClick={false}>
+        <div className='bg-blue-200 w-96 h-60 rounded-md'>
           <p className='font-bold flex-row flex justify-center align-middle pt-10'>
             You scored {accuracyPop}%
           </p>
+          <button className='block mx-auto mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' onClick={handleNewPuzzle}>
+            New Puzzle
+          </button>
         </div>
       </Popup>
 
