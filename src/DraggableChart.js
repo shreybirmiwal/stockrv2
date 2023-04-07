@@ -11,7 +11,7 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, userResponce, setData}) => {
+const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
@@ -67,23 +67,31 @@ const DraggableChart = ({data, userResponce, setData}) => {
 
   const handleNewPuzzle = () => {
     resetVals()
-    const randomIndex = Math.floor(Math.random() * DummyData.length);
-    setData(DummyData[randomIndex]);
-    userResponce = {
-      current : 
-      [
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-      ]
+
+    var randomIndex = 0;
+    while(randomIndex == oldIndex){
+      randomIndex = Math.floor(Math.random() * DummyData.length);
     }
+
+      setOldIndex(randomIndex)
+      setData(DummyData[randomIndex]);
+      
+      userResponce = {
+        current : 
+        [
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+          DummyData[randomIndex][0].next[0],
+        ]
+      }
+    
     setPopOpen(false); // Close the popup
 
   }

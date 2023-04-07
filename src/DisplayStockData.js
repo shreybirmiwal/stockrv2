@@ -3,7 +3,7 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import DummyData from "./DummyData.js";
 
-const DisplayStockData = ({data, setData , userResponce}) => {
+const DisplayStockData = ({data, setData , userResponce, oldIndex, setOldIndex }) => {
 
   const options = {
     chart: {
@@ -93,21 +93,25 @@ const DisplayStockData = ({data, setData , userResponce}) => {
   };
 
   const handleRefresh = () => {
-    const randomIndex = Math.floor(Math.random() * DummyData.length);
+    var randomIndex = 0;
+    while(randomIndex == oldIndex){
+      randomIndex = Math.floor(Math.random() * DummyData.length);
+    }
+    setOldIndex(randomIndex)
     setData(DummyData[randomIndex]);
     userResponce = {
       current : 
       [
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
+        DummyData[randomIndex][0].next[0],
       ]
     }
 
