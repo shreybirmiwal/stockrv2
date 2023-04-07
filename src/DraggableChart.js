@@ -11,14 +11,14 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) => {
+const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex, setOldIndex }) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
 
   const handleSubmit = () => {
-    console.log(userResponce);
-    console.log(data[0].next);
+    console.log(userResponce.current);
+    //console.log(data[0].next);
 
     const chart = chartRef.current.chart;
     chart.series[1].setVisible(true);
@@ -39,7 +39,7 @@ const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) =
   const resetVals = () => {
     //console.log(data[0].next[0]);
     
-    userResponce = {
+    setUserResponce( {
       current : 
       [
         data[0].next[0],
@@ -54,14 +54,14 @@ const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) =
         data[0].next[0],
       ]
     }
-
-    console.log("WE ARE RESETING DATA! " + userResponce.current)
+    )
+    //console.log("WE ARE RESETING DATA! " + userResponce.current)
 
   }
 
   useEffect(() => {
     resetVals()
-    console.log("data updated! " + userResponce.current)
+    //console.log("data updated! " + userResponce.current)
 
   }, [data]);
 
@@ -76,7 +76,7 @@ const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) =
       setOldIndex(randomIndex)
       setData(DummyData[randomIndex]);
       
-      userResponce = {
+      setUserResponce( {
         current : 
         [
           DummyData[randomIndex][0].next[0],
@@ -90,7 +90,7 @@ const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) =
           DummyData[randomIndex][0].next[0],
           DummyData[randomIndex][0].next[0],
         ]
-      }
+      })
     
     setPopOpen(false); // Close the popup
 
@@ -185,7 +185,7 @@ const DraggableChart = ({data, userResponce, setData, oldIndex, setOldIndex }) =
             drop: function (e) {
               var temp = userResponce
               temp.current[e.target.x] = e.target.y;
-              userResponce = temp;
+              setUserResponce(temp);
 
               //temp[e.target.x] = e.target.y;
               //console.log(e.target.y)

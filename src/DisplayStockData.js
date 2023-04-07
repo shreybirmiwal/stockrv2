@@ -3,7 +3,7 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import DummyData from "./DummyData.js";
 
-const DisplayStockData = ({data, setData , userResponce, oldIndex, setOldIndex }) => {
+const DisplayStockData = ({data, setData , setUserResponce, oldIndex, setOldIndex }) => {
 
   const options = {
     chart: {
@@ -99,7 +99,7 @@ const DisplayStockData = ({data, setData , userResponce, oldIndex, setOldIndex }
     }
     setOldIndex(randomIndex)
     setData(DummyData[randomIndex]);
-    userResponce = {
+    setUserResponce( {
       current : 
       [
         DummyData[randomIndex][0].next[0],
@@ -113,7 +113,7 @@ const DisplayStockData = ({data, setData , userResponce, oldIndex, setOldIndex }
         DummyData[randomIndex][0].next[0],
         DummyData[randomIndex][0].next[0],
       ]
-    }
+    })
 
 
     //update the displayed dragable chart in draggableChart.js using the useeffect watching data
