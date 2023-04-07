@@ -3,7 +3,7 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import DummyData from "./DummyData.js";
 
-const DisplayStockData = ({data, setData , setUserResponce, SetdisplayedDrag, displayedDrag}) => {
+const DisplayStockData = ({data, setData , userResponce}) => {
 
   const options = {
     chart: {
@@ -95,31 +95,23 @@ const DisplayStockData = ({data, setData , setUserResponce, SetdisplayedDrag, di
   const handleRefresh = () => {
     const randomIndex = Math.floor(Math.random() * DummyData.length);
     setData(DummyData[randomIndex]);
-    setUserResponce([
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-    ])
+    userResponce = {
+      current : 
+      [
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+      ]
+    }
 
-    SetdisplayedDrag([
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-    ])
+
     //update the displayed dragable chart in draggableChart.js using the useeffect watching data
 
   };

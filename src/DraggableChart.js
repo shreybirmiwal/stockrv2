@@ -10,7 +10,7 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, setData, userResponce, setUserResponce, displayedDrag, SetdisplayedDrag}) => {
+const DraggableChart = ({data, userResponce}) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
@@ -36,38 +36,29 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce, displayed
   }
 
   const resetVals = () => {
-    console.log(data[0].next[0]);
+    //console.log(data[0].next[0]);
     
-    setUserResponce([
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-    ])
-
-    SetdisplayedDrag([
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-      data[0].next[0],
-    ])
+    userResponce = {
+      current : 
+      [
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+        data[0].next[0],
+      ]
+    }
 
   }
 
   useEffect(() => {
     resetVals()
+    //console.log(userResponce)
   }, [data]);
 
   const determineAcuracy = () => {
@@ -75,11 +66,11 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce, displayed
     //is userResponce
 
 
-    const numItems = userResponce.length;
+    const numItems = userResponce.current.length;
     let totalDifference = 0;
     
     for (let i = 0; i < numItems; i++) {
-      const difference = Math.abs(data[0].next[i] - userResponce[i]) * 1;
+      const difference = Math.abs(data[0].next[i] - userResponce.current[i]) * 1;
       totalDifference += (difference.toFixed(2)*1);
       //console.log("total " +totalDifference)
     }
@@ -140,7 +131,7 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce, displayed
     series: [
       {
         name: '',
-        data: displayedDrag,
+        data: [data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]],
         lineWidth: 2,
         dragDrop: {
           draggableX: false,
@@ -154,11 +145,11 @@ const DraggableChart = ({data, setData, userResponce, setUserResponce, displayed
             drag: function (e) {
             },
             drop: function (e) {
-              var temp = userResponce
-              temp[e.target.x] = (e.target.y);
+              //var temp = userResponce
+              //temp[e.target.x] = e.target.y;
               //console.log(e.target.y)
               //console.log("TEMP " + temp)
-              setUserResponce(temp);
+              //userResponce = temp;
               //SetdisplayedDrag(temp);
             },
           },
