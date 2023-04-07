@@ -145,7 +145,10 @@ const DraggableChart = ({data, userResponce}) => {
             drag: function (e) {
             },
             drop: function (e) {
-              //var temp = userResponce
+              var temp = userResponce
+              temp.current[e.target.x] = e.target.y;
+              userResponce = temp;
+
               //temp[e.target.x] = e.target.y;
               //console.log(e.target.y)
               //console.log("TEMP " + temp)
