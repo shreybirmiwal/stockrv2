@@ -10,6 +10,7 @@ function App() {
 
   const [data, setData] = useState(DummyData[0]);
   const [oldIndex, setOldIndex] = useState(0);
+  const [meridian, setMeridian] = useState(0);
 
   const [userResponce, setUserResponce] = useState([ DummyData[0][0].next[0],
     DummyData[0][0].next[0],
@@ -28,7 +29,7 @@ function App() {
         <DisplayStockData oldIndex = {oldIndex} setOldIndex={setOldIndex} setUserResponce={setUserResponce} data={data} setData={setData} userResponce={userResponce}  />
       </div>
       <div style={{ width: '50%', height: '100%', position: 'relative' }}>
-        <DraggableChart oldIndex = {oldIndex} setOldIndex={setOldIndex} data={data}setUserResponce={setUserResponce} setData={setData} userResponce={userResponce} />
+        <DraggableChart meridian = {meridian} setMeridian={setMeridian} oldIndex = {oldIndex} setOldIndex={setOldIndex} data={data}setUserResponce={setUserResponce} setData={setData} userResponce={userResponce} />
       </div>
     </div>
   );

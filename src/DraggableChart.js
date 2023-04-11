@@ -11,10 +11,12 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex, setOldIndex }) => {
+const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex, setOldIndex, meridian, setMeridian}) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
+  const [values, setValues] = useState([data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]])
+
 
   const handleSubmit = () => {
     console.log(userResponce.current);
@@ -42,25 +44,29 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
     setUserResponce( {
       current : 
       [
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
-        data[0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
+        DummyData[oldIndex][0].next[0],
       ]
     }
     )
+    //setValues([data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]])
+
+    setValues([DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0]])
     //console.log("WE ARE RESETING DATA! " + userResponce.current)
 
   }
 
   useEffect(() => {
     resetVals()
+    setMeridian(data[0].next[0])
     //console.log("data updated! " + userResponce.current)
 
   }, [data]);
@@ -91,6 +97,9 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
           DummyData[randomIndex][0].next[0],
         ]
       })
+
+      setValues([data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]])
+
     
     setPopOpen(false); // Close the popup
 
@@ -105,10 +114,15 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
     let totalDifference = 0;
     
     for (let i = 0; i < numItems; i++) {
+      
+      if(userResponce.current[i] == meridian) userResponce.current[i] = data[0].next[0];
+
       const difference = Math.abs(data[0].next[i] - userResponce.current[i]) * 1;
       totalDifference += (difference.toFixed(2)*1);
       //console.log("total " +totalDifference)
     }
+
+    setMeridian(data[0].next[0]);
     
     const averageDifference = totalDifference / numItems;
     var weightedDiff = 100 - ((averageDifference*110) / (data[0].absMax-data[0].absMin));
@@ -169,7 +183,7 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
     series: [
       {
         name: '',
-        data: [data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]],
+        data: values,
         lineWidth: 2,
         dragDrop: {
           draggableX: false,
