@@ -16,7 +16,7 @@ const DraggableChart = ({data,setUserValues,userValues,  setUserResponce, userRe
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
   const [values, setValues] = useState([data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]])
-
+  var tempAr = [0,0,0,0,0,0,0,0,0,0]
 
   const handleSubmit = () => {
     //console.log(data[0].next);
@@ -38,9 +38,17 @@ const DraggableChart = ({data,setUserValues,userValues,  setUserResponce, userRe
 
   const resetVals = () => {
     //console.log(data[0].next[0]);
-    
+    tempAr = [0,0,0,0,0,0,0,0,0,0]
+
 
   }
+
+
+  const handlePointDrag = (e) => {
+    // Update the 'values' state with the new values
+    tempAr[e.target.x] = e.target.y;
+  }
+
 
   const handleNewPuzzle = () => {
     resetVals()
@@ -64,18 +72,17 @@ const DraggableChart = ({data,setUserValues,userValues,  setUserResponce, userRe
     //is userResponce
 
     //console.log(values)
-    const numItems = values.length;
+    const numItems = tempAr.length;
     let totalDifference = 0;
-    
+    console.log(tempAr);
     for (let i = 0; i < numItems; i++) {
       
       
-      var curVal = values[i];
-      if (typeof curVal === 'object' && 'y' in curVal) {
-        curVal = curVal.y; // If value is an object with property 'y', extract its value
+      var curVal = tempAr[i];
+      if (curVal == 0) {
+        curVal = data[0].next[0]; // If value is an object with property 'y', extract its value
       }
 
-      if(curVal == meridian) curVal = data[0].next[0];
 
       const difference = Math.abs(data[0].next[i] - curVal) * 1;
       totalDifference += (difference.toFixed(2)*1);
@@ -152,6 +159,8 @@ const DraggableChart = ({data,setUserValues,userValues,  setUserResponce, userRe
         },
         point: {
           events: {
+            
+            drop: handlePointDrag
           },
         },
       },
