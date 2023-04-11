@@ -11,7 +11,7 @@ if (typeof Highcharts === "object") {
   draggable(Highcharts);
 }
 
-const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex, setOldIndex, meridian, setMeridian}) => {
+const DraggableChart = ({data,setUserValues,userValues,  setUserResponce, userResponce, setData, oldIndex, setOldIndex, meridian, setMeridian}) => {
   const chartRef = useRef(null);
   const [PopOpen, setPopOpen] = useState(false);
   const [accuracyPop, SetAccuracyPop] = useState(0);
@@ -20,6 +20,7 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
 
   const handleSubmit = () => {
     //console.log(data[0].next);
+    //console.log(values)
 
     const chart = chartRef.current.chart;
     chart.series[1].setVisible(true);
@@ -41,8 +42,6 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
 
   }
 
-
-
   const handleNewPuzzle = () => {
     resetVals()
 
@@ -54,6 +53,8 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
       setOldIndex(randomIndex)
       setData(DummyData[randomIndex]);
       setValues([DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0]])  
+      setUserValues([DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0]])  
+
       setPopOpen(false); // Close the popup
 
   }
@@ -62,9 +63,36 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
     //should be data[0].next
     //is userResponce
 
-    console.log(values)
+    //console.log(values)
+    const numItems = values.length;
+    let totalDifference = 0;
+    
+    for (let i = 0; i < numItems; i++) {
+      
+      
+      var curVal = values[i];
+      if (typeof curVal === 'object' && 'y' in curVal) {
+        curVal = curVal.y; // If value is an object with property 'y', extract its value
+      }
 
-    return 0
+      if(curVal == meridian) curVal = data[0].next[0];
+
+      const difference = Math.abs(data[0].next[i] - curVal) * 1;
+      totalDifference += (difference.toFixed(2)*1);
+      //console.log("total " +totalDifference)
+    }
+    
+    const averageDifference = totalDifference / numItems;
+    var weightedDiff = 100 - ((averageDifference*110) / (data[0].absMax-data[0].absMin));
+    if(weightedDiff < 0) weightedDiff = 0;
+
+    if(weightedDiff !== weightedDiff){
+      console.log("BROKEN!")
+      //if its nAn
+      return 0;
+    }
+
+    return weightedDiff;
 
   }
   
@@ -124,10 +152,6 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
         },
         point: {
           events: {
-            drag: function (e) {
-            },
-            drop: function (e) {
-            },
           },
         },
       },

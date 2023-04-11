@@ -22,14 +22,16 @@ function App() {
     DummyData[0][0].next[0],
     DummyData[0][0].next[0],
     DummyData[0][0].next[0],])
+    const [userValues, setUserValues] = useState([DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0],DummyData[0][0].next[0]])
+
 
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ width: '50%', height: '100%' }}>
-        <DisplayStockData oldIndex = {oldIndex} setOldIndex={setOldIndex} setUserResponce={setUserResponce} data={data} setData={setData} userResponce={userResponce}  />
+        <DisplayStockData userValues = {userValues} setUserValues={setUserValues} oldIndex = {oldIndex} setOldIndex={setOldIndex} setUserResponce={setUserResponce} data={data} setData={setData} userResponce={userResponce}  />
       </div>
       <div style={{ width: '50%', height: '100%', position: 'relative' }}>
-        <DraggableChart meridian = {meridian} setMeridian={setMeridian} oldIndex = {oldIndex} setOldIndex={setOldIndex} data={data}setUserResponce={setUserResponce} setData={setData} userResponce={userResponce} />
+        <DraggableChart  userValues = {userValues} setUserValues={setUserValues} meridian = {meridian} setMeridian={setMeridian} oldIndex = {oldIndex} setOldIndex={setOldIndex} data={data}setUserResponce={setUserResponce} setData={setData} userResponce={userResponce} />
       </div>
     </div>
   );
