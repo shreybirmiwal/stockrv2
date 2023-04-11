@@ -99,23 +99,6 @@ const DisplayStockData = ({data, setData , setUserResponce, oldIndex, setOldInde
     }
     setOldIndex(randomIndex)
     setData(DummyData[randomIndex]);
-    setUserResponce( {
-      current : 
-      [
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-        DummyData[randomIndex][0].next[0],
-      ]
-    })
-
-
     //update the displayed dragable chart in draggableChart.js using the useeffect watching data
 
   };

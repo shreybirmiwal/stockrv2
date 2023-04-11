@@ -19,7 +19,6 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
 
 
   const handleSubmit = () => {
-    console.log(userResponce.current);
     //console.log(data[0].next);
 
     const chart = chartRef.current.chart;
@@ -31,8 +30,6 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
       console.log(accuracy)
       SetAccuracyPop(accuracy.toFixed(2))
       setPopOpen(true)
-
-      resetVals()
       
     }, 2500); // Delay of 1 second
 
@@ -41,35 +38,10 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
   const resetVals = () => {
     //console.log(data[0].next[0]);
     
-    setUserResponce( {
-      current : 
-      [
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-        DummyData[oldIndex][0].next[0],
-      ]
-    }
-    )
-    //setValues([data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]])
-
-    setValues([DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0],DummyData[oldIndex][0].next[0]])
-    //console.log("WE ARE RESETING DATA! " + userResponce.current)
 
   }
 
-  useEffect(() => {
-    resetVals()
-    setMeridian(data[0].next[0])
-    //console.log("data updated! " + userResponce.current)
 
-  }, [data]);
 
   const handleNewPuzzle = () => {
     resetVals()
@@ -81,27 +53,8 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
 
       setOldIndex(randomIndex)
       setData(DummyData[randomIndex]);
-      
-      setUserResponce( {
-        current : 
-        [
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-          DummyData[randomIndex][0].next[0],
-        ]
-      })
-
-      setValues([data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0],data[0].next[0]])
-
-    
-    setPopOpen(false); // Close the popup
+      setValues([DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0],DummyData[randomIndex][0].next[0]])  
+      setPopOpen(false); // Close the popup
 
   }
 
@@ -109,32 +62,9 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
     //should be data[0].next
     //is userResponce
 
+    console.log(values)
 
-    const numItems = userResponce.current.length;
-    let totalDifference = 0;
-    
-    for (let i = 0; i < numItems; i++) {
-      
-      if(userResponce.current[i] == meridian) userResponce.current[i] = data[0].next[0];
-
-      const difference = Math.abs(data[0].next[i] - userResponce.current[i]) * 1;
-      totalDifference += (difference.toFixed(2)*1);
-      //console.log("total " +totalDifference)
-    }
-
-    setMeridian(data[0].next[0]);
-    
-    const averageDifference = totalDifference / numItems;
-    var weightedDiff = 100 - ((averageDifference*110) / (data[0].absMax-data[0].absMin));
-    if(weightedDiff < 0) weightedDiff = 0;
-
-    if(weightedDiff !== weightedDiff){
-      console.log("BROKEN!")
-      //if its nAn
-      return 0;
-    }
-
-    return weightedDiff;
+    return 0
 
   }
   
@@ -197,15 +127,6 @@ const DraggableChart = ({data, setUserResponce, userResponce, setData, oldIndex,
             drag: function (e) {
             },
             drop: function (e) {
-              var temp = userResponce
-              temp.current[e.target.x] = e.target.y;
-              setUserResponce(temp);
-
-              //temp[e.target.x] = e.target.y;
-              //console.log(e.target.y)
-              //console.log("TEMP " + temp)
-              //userResponce = temp;
-              //SetdisplayedDrag(temp);
             },
           },
         },
